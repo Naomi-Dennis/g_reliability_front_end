@@ -63,7 +63,7 @@ view model =
             []
         , div
             [ id "message" ]
-            [ p [] [ text "Enter something to translate!" ]
+            [ p [] [ text "Enter something to translate! Be for warned! The birds may understand you, but will you understand them?" ]
             , br [] []
             , input [] []
             , button [ style "margin-left" "10px", onClick ParrottedMessage ] [ text "Enter" ]
