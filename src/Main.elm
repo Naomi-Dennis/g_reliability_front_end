@@ -56,8 +56,8 @@ view : Model -> Html Msg
 view model =
     div [ id "main", style "width" "37%", style "margin" "0 auto", style "text-align" "center" ]
         [ div [ id "header" ]
-            [ h1 [] [ text "English to Bird Translator" ]
-            , h2 [] [ text "Talk to Birds!" ]
+            [ h1 [] [ text "English to Bird Translator: Some Change" ]
+            , h2 [] [ text "Even more change!" ]
             ]
         , br []
             []
