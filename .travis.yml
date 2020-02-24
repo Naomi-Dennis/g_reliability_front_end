@@ -7,14 +7,25 @@ install:
    - npm install -g elm@0.19.1-3
    - npm install -g elm-test@0.19.1
 
-script:
-   - elm-test
-   - elm make src/Main.elm
-   - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-   - export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
-   - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-   - wget https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip
-   - sudo unzip terraform_"$tf_version"_linux_amd64.zip -d ./terraform_cmd
-   - cd terraform/
-   - ../terraform_cmd/terraform init
-   - ../terraform_cmd/terraform apply -auto-approve
+stages:
+   - test
+   - deploy
+
+jobs:
+   include:
+      - name: "Elm Test"
+        stage: test
+        script: elm-test
+      - name: "Deploy"
+        stage: deploy
+        if: branch = master
+        script:
+           - elm make src/Main.elm
+           - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+           - export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+           - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+           - wget https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip
+           - sudo unzip terraform_"$tf_version"_linux_amd64.zip -d ./terraform_cmd
+           - cd terraform/
+           - ../terraform_cmd/terraform init
+           - ../terraform_cmd/terraform apply -auto-approve
