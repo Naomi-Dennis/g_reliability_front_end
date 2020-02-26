@@ -1,9 +1,9 @@
-module Index exposing (..)
+module Homepage exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import IndexHelpers exposing (generateArrivalTimesTable)
-import Models exposing (Msg, StationArrivalTimes)
+import HomepageHelper exposing (generateArrivalTimesTable)
+import ArrivalTypes exposing (Msg, StationArrivalTimes)
 
 
 index : StationArrivalTimes -> Html Msg

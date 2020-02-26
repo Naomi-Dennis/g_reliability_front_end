@@ -1,7 +1,7 @@
-module IndexHelpers exposing (..)
+module HomepageHelper exposing (..)
 
 import Html exposing (Html, td, text, tr)
-import Models exposing (Msg)
+import ArrivalTypes exposing (Msg)
 
 
 generateArrivalTimesTable : List (List String) -> List (Html Msg)
