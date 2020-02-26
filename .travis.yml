@@ -18,7 +18,7 @@ jobs:
         script: elm-test
       - name: "Deploy"
         stage: deploy
-        if: branch = master
+        if: (NOT type IN (pull_request)) AND (branch = master)
         script:
            - elm make src/Main.elm
            - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
