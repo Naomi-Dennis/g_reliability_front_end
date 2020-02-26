@@ -1,9 +1,9 @@
 module Main exposing (..)
 
-import Browser
-import Html exposing (Html)
-import Index exposing (index)
 import ArrivalTypes exposing (..)
+import Browser
+import Homepage exposing (index)
+import Html exposing (Html)
 
 
 fakeArrivalData : StationArrivalTimes

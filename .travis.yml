@@ -15,7 +15,9 @@ jobs:
    include:
       - name: "Elm Test"
         stage: test
-        script: elm-test
+        script:
+           - elm-test
+           - elm make src/Main.elm
       - name: "Deploy"
         stage: deploy
         if: (NOT type IN (pull_request)) AND (branch = master)
