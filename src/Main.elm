@@ -1,72 +1,56 @@
 module Main exposing (..)
 
--- Press buttons to increment and decrement a counter.
---
--- Read how it works:
---   https://guide.elm-lang.org/architecture/buttons.html
---
-
 import Browser
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (onClick)
+import Html exposing (Html)
+import Index exposing (index)
+import ArrivalTypes exposing (..)
 
 
-
--- MAIN
+fakeArrivalData : StationArrivalTimes
+fakeArrivalData =
+    [ [ "Predicted Arrival", "Actual Arrival", "Difference" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    , [ "1:00 AM", "2:00 AM", "01:00:00" ]
+    ]
 
 
 main =
     Browser.sandbox { init = init, update = update, view = view }
 
 
-
--- MODEL
-
-
-type alias Model =
-    String
-
-
-init : Model
+init : StationArrivalTimes
 init =
-    ""
+    fakeArrivalData
 
 
-
--- UPDATE
-
-
-type Msg
-    = ParrottedMessage
+update : Msg -> StationArrivalTimes -> StationArrivalTimes
+update msg arrivalTimes =
+    [ [ "" ] ]
 
 
-update : Msg -> Model -> Model
-update msg model =
-    case msg of
-        ParrottedMessage ->
-            model ++ "bird noises "
-
-
-
--- VIEW
-
-
-view : Model -> Html Msg
+view : StationArrivalTimes -> Html Msg
 view model =
-    div [ id "main", style "width" "37%", style "margin" "0 auto", style "text-align" "center" ]
-        [ div [ id "header" ]
-            [ h1 [] [ text "English to Bird Translator: Some Change" ]
-            , h2 [] [ text "Even more change!" ]
-            ]
-        , br []
-            []
-        , div
-            [ id "message" ]
-            [ p [] [ text "Enter something to translate! Be for warned! The birds may understand you, but will you understand them?" ]
-            , br [] []
-            , input [] []
-            , button [ style "margin-left" "10px", onClick ParrottedMessage ] [ text "Enter" ]
-            , p [] [ text model ]
-            ]
-        ]
+    index model
