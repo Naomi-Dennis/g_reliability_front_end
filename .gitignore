@@ -2,3 +2,5 @@ elm-stuff/
 terraform/.terraform/
 .DS_Store
 *.swp
+js/
+index.html
