@@ -10,7 +10,27 @@ import VegaLite exposing (..)
 
 fakeArrivalData : String
 fakeArrivalData =
-    """{"day": ["7 Days Before", "6 Days Before", "5 Days Before", "4 Days BeforE", "3 Days Before", "2 Days Before", "1 Day Before", "Today"],"meanArrivalDifferences": [2.34, -0.10, 5.30, 7.20, -5.32, -4.20, 0.00, 0.32]}"""
+    """{"day": [
+            "7 Days Before",
+            "6 Days Before",
+            "5 Days Before",
+            "4 Days Before",
+            "3 Days Before",
+            "2 Days Before",
+            "Yesterday",
+            "Today"
+          ],
+        "meanArrivalDifferences": [
+                2.34,
+                -0.10,
+                5.30,
+                7.20,
+                -5.32,
+                -4.20,
+                0.00,
+                0.32
+          ]
+        }"""
 
 
 decodedData =
@@ -29,6 +49,22 @@ yAxisName =
     "Mean Difference in Estimated vs Actual Arrival Time (Minutes)"
 
 
+axisFontSize =
+    18
+
+
+axisLabelFontSize =
+    15
+
+
+titleContent =
+    "Mind the G-App"
+
+
+titleFontSize =
+    32
+
+
 arrivalBarGraph : Spec
 arrivalBarGraph =
     let
@@ -42,10 +78,23 @@ arrivalBarGraph =
 
         enc =
             encoding
-                << position X [ pName xAxisName, pOrdinal, pSort [ soCustom (strs fakeArrivalTimes.day) ] ]
-                << position Y [ pName yAxisName, pQuant ]
+                << position X [ pName xAxisName, pOrdinal, pSort [ soCustom (strs fakeArrivalTimes.day) ], pAxis [ axTitleFontSize axisFontSize ] ]
+                << position Y [ pName yAxisName, pQuant, pAxis [ axTitleFontSize axisFontSize ] ]
+
+        br =
+            bar [ maColor "#6CBE45", maCornerRadius 4 ]
+
+        graphTitle =
+            title titleContent [ tiFontSize titleFontSize ]
+
+        size =
+            autosize [ asResize, asContent ]
+
+        cfg =
+            configure
+                << configuration (coAxis [ axcoLabelFontSize axisLabelFontSize ])
     in
-    toVegaLite [ width 500, height 450, des, data [], enc [], bar [] ]
+    toVegaLite [ graphTitle, width 500, height 450, cfg [], size, des, data [], enc [], br ]
 
 
 main : Program () Spec msg
