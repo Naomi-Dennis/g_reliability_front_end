@@ -17,7 +17,7 @@ jobs:
         stage: test
         script:
            - elm-test
-           - elm make src/Main.elm
+           - elm make src/Main.elm --output=js/vega_graph.js --optimize
       - name: "Deploy"
         stage: deploy
         if: (NOT type IN (pull_request)) AND (branch = master)
