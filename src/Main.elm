@@ -2,6 +2,7 @@ port module Main exposing (elmToJS)
 
 import ArrivalTime exposing (..)
 import Browser
+import Env exposing (accuracyData)
 import Html exposing (Html)
 import Http exposing (..)
 import Json.Decode as Decode exposing (decodeString)
@@ -44,7 +45,7 @@ arrivalBarGraph =
             description "A visualization of arrival time averages for the MTA G Train Greenpoint Ave. stop"
 
         data =
-            dataFromUrl "http://localhost:4000/" []
+            dataFromUrl accuracyData []
 
         enc =
             encoding
